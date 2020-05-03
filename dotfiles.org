@@ -38,3 +38,16 @@
 
     A call to =org-babel-tangle= then writes the code blocks to the
     specific output files and *overwrites* any existing content.
+** Applications
+*** SBCL
+    [[http://www.sbcl.org][SBCL]] is a high performance Common Lisp implementation.
+    [[https://www.quicklisp.org/beta/][Quicklisp]] is the defacto Common Lisp library manager.
+**** Common
+     #+begin_src lisp (tangle-to "~/.sbclrc")
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+     #+end_src
