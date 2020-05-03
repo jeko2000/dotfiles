@@ -1,0 +1,40 @@
+#+TITLE: Dot file configuration
+#+AUTHOR: Johnny Ruiz
+#+EMAIL: jeko2000@yandex.com
+#+DESCRIPTION: Personal dot configuration files
+#+LANGUAGE: en
+#+OPTIONS: H:4 num:nil toc:2 p:t
+
+** Introduction
+   This file leverages [[https://orgmode.org][org-mode]]'s [[https://orgmode.org/manual/Extracting-Source-Code.html][code export]] capabilities to construct
+   dot configuration files I use in my systems with the exception of my
+   my [[https://github.com/jeko2000/.emacs.d][emacs]] configuration which is tracked separately in the following
+   repository:
+
+   https://github.com/jeko2000/.emacs.d
+
+*** Per-system configuration
+    To support per-system configuration, we'll use the following utility
+    function =tangle-to=.
+
+    The following systems are supported:
+    + gnu :: compiled for a GNU Hurd system.
+    + gnu/linux :: compiled for a GNU/Linux system.
+    + gnu/kfreebsd :: compiled for a GNU system with a FreeBSD kernel.
+    + darwin :: compiled for Darwin (GNU-Darwin, macOS, ...).
+    + ms-dos :: compiled as an MS-DOS application.
+    + windows-nt :: compiled as a native W32 application.
+    + cygwin :: compiled using the Cygwin library.
+
+    #+begin_src emacs-lisp :exports none :results silent
+(defun tangle-to (filename &rest system-types)
+  "Return FILENAME when the value of `system-type' is present in SYSTEM-TYPES.
+'If SYSTEM-TYPES is nil, then return FILENAME immediately."
+  (check-type filename string)
+  (if (or (null system-types) (member system-type system-types))
+      filename
+    'no))
+    #+end_src
+
+    A call to =org-babel-tangle= then writes the code blocks to the
+    specific output files and *overwrites* any existing content.
