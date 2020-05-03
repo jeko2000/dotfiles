@@ -1,0 +1,11 @@
+#+TITLE: Dot file configuration
+#+AUTHOR: Johnny Ruiz
+#+EMAIL: jeko2000@yandex.com
+#+DESCRIPTION: Personal dot configuration files
+#+LANGUAGE:  en
+
+** Introduction
+
+My dotfiles in declared [[http://www.literateprogramming.com][literate programming]] style.
+
+Please see [[dotfiles.org]].
